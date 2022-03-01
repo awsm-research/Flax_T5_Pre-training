@@ -45,3 +45,41 @@ pip install --user transformers
 ```
 
 ## How to pre-train a T5 model using Transformers and Flax
+
+### Step 1, cd to pre-training dir:
+```python
+cd Flax_T5_Pre-training/transformers/examples/flax/language-modeling
+```
+
+### Step 2, make dir to save your pre-trained model
+```python 
+mkdir pretrained_model
+```
+
+### Step 3, run the following commands to start pre-training:
+```python
+python run_t5_mlm_flax.py --output_dir="./pretrained_model" \
+                          --train_file="./data/train.txt" \
+                          --validation_file="./data/val.txt" \
+                          --model_type="t5" \
+                          --model_name_or_path="Salesforce/CodeT5" \
+                          --config_name="Salesforce/CodeT5" \
+                          --tokenizer_name="Salesforce/CodeT5" \
+                          --max_seq_length="512" \
+                          --per_device_train_batch_size="8" \
+                          --per_device_eval_batch_size="8" \
+                          --adafactor \
+                          --learning_rate="0.005" \
+                          --weight_decay="0.001" \
+                          --warmup_steps="2000" \
+                          --overwrite_output_dir \
+                          --logging_steps="500" \                            
+                          --save_steps="10000" \
+                          --eval_steps="2500"
+```
+
+### Important Note for Pre-training setting
+#### The pre-training setting above is the default setting provided by authors of Transformers library. 
+#### Please modify to fit your needs. 
+**--model_name_or_path** / **--config_name** / **--tokenizer_name**
+Those parameters are related to the model checkpoint used to initialize your T5 model to be pre-trained, this can either be a local path or the model provided on the API provided by Huggingface Team.
