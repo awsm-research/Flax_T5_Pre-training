@@ -17,8 +17,12 @@
       <a href="#how-to-set-up-your-environment">How to set up your environment</a>
     </li>
     <li>
+      <a href="#how-to-prepare-your-pre-training-data">How to prepare your pre-training data</a>
+    </li>
+    <li>
       <a href="#how-to-pre-train-a-t5-model-using-transformers-and-flax">How to pre-train a T5 model using Transformers and Flax</a>
     </li>
+
   </ol>
 </details>
 
@@ -43,6 +47,12 @@ pip install --user tensorflow
 ```python
 pip install --user transformers
 ```
+
+## How to prepare your pre-training data
+
+Please first process your data into .txt format where **each line represents one data point**
+#### By default, the training data path is ./data/train.txt
+#### By default, the validation data path is ./data/val.txt
 
 ## How to pre-train a T5 model using Transformers and Flax
 
