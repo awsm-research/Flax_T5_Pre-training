@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="logo/jax_logo.png" width="200" height="200">
+    <img src="logo/jax_logo.png" width="300" height="200">
   </a>
   <h3 align="center">T5 Pre-training Using FLAX</h3>
   <p align="center">
