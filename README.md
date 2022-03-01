@@ -65,6 +65,7 @@ python run_t5_mlm_flax.py --output_dir="./pretrained_model" \
                           --model_name_or_path="Salesforce/CodeT5" \
                           --config_name="Salesforce/CodeT5" \
                           --tokenizer_name="Salesforce/CodeT5" \
+                          --from_pt \
                           --max_seq_length="512" \
                           --per_device_train_batch_size="8" \
                           --per_device_eval_batch_size="8" \
@@ -82,4 +83,7 @@ python run_t5_mlm_flax.py --output_dir="./pretrained_model" \
 #### The pre-training setting above is the default setting provided by authors of Transformers library. 
 #### Please modify to fit your needs. 
 **--model_name_or_path** / **--config_name** / **--tokenizer_name**
-Those parameters are related to the model checkpoint used to initialize your T5 model to be pre-trained, this can either be a local path or the model provided on the API provided by Huggingface Team.
+
+These parameters are related to the model checkpoint used to initialize your T5 model to be pre-trained, this can either be a local path or the model provided on the API provided by Huggingface Team.
+#### If your checkpoint model is a flax model, please change "--from_pt" to "--from_flax"
+#### By default, the script accepts a checkpoint model in PyTorch format.
