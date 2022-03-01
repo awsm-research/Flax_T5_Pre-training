@@ -53,6 +53,7 @@ pip install --user transformers
 Please first process your data into .txt format where **each line represents one data point**
 #### By default, the training data path is ./data/train.txt
 #### By default, the validation data path is ./data/val.txt
+Where **./** is **Flax_T5_Pre-training/transformers/examples/flax/language-modeling**
 
 ## How to pre-train a T5 model using Transformers and Flax
 
