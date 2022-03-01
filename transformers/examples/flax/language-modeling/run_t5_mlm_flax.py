@@ -682,9 +682,13 @@ def main():
     rng = jax.random.PRNGKey(training_args.seed)
     dropout_rngs = jax.random.split(rng, jax.local_device_count())
 
-    if model_args.model_name_or_path:
+    if model_args.model_name_or_path and model_args.from_pt:
         model = FlaxT5ForConditionalGeneration.from_pretrained(
             model_args.model_name_or_path, config=config, seed=training_args.seed, dtype=getattr(jnp, model_args.dtype), from_pt=True
+        )
+    elif model_args.model_name_or_path and model_args.from_flax:
+        model = FlaxT5ForConditionalGeneration.from_pretrained(
+            model_args.model_name_or_path, config=config, seed=training_args.seed, dtype=getattr(jnp, model_args.dtype)
         )
     else:
         config.vocab_size = len(tokenizer)
