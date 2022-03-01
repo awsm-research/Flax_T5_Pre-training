@@ -107,7 +107,7 @@ class TrainingArguments:
         default=None, metadata={"help": "The name of the repository to keep in sync with the local `output_dir`."}
     )
     hub_token: str = field(default=None, metadata={"help": "The token to use to push to the Model Hub."})
-
+    
     def __post_init__(self):
         if self.output_dir is not None:
             self.output_dir = os.path.expanduser(self.output_dir)
@@ -163,6 +163,14 @@ class ModelArguments:
         metadata={
             "help": "Floating-point format in which the model weights should be initialized and trained. Choose one of `[float32, float16, bfloat16]`."
         },
+    )
+    from_pt: bool = field(
+        default=False,
+        metadata={"help": "Whether the checkpoint model is a pytorch model."},
+    )
+    from_flax: bool = field(
+        default=False,
+        metadata={"help": "Whether the checkpoint model is a flax model."},
     )
 
 
@@ -570,11 +578,11 @@ def main():
     # Load pretrained model and tokenizer
 
     if model_args.tokenizer_name:
-        tokenizer = T5Tokenizer.from_pretrained(
+        tokenizer = AutoTokenizer.from_pretrained(
             model_args.tokenizer_name, cache_dir=model_args.cache_dir, use_fast=model_args.use_fast_tokenizer
         )
     elif model_args.model_name_or_path:
-        tokenizer = T5Tokenizer.from_pretrained(
+        tokenizer = AutoTokenizer.from_pretrained(
             model_args.model_name_or_path, cache_dir=model_args.cache_dir, use_fast=model_args.use_fast_tokenizer
         )
     else:
